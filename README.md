@@ -96,6 +96,9 @@ Projeto para automação do provisionamento e deploy de um cluster Kubernetes co
     ssh-agent zsh
     ssh-add ~/.ssh/ansible_k8s.pem
     ssh ubuntu@IP_DO_SERVER
-    - As instâncias EC2 do tipo t3.medium não fazem parte do "plano gratuito de testes"(free tier) da AWS, portanto não se esqueça de dar um `terminate` nas instâncias e remover o Security Group após terminar os testes neste projeto, caso contrário será cobrado pelo tempo utilizado, cerca de 0.0464 por hora na região da Virgínia.
-    - Queira ou não, você será cobrado pelo tempo utilizado das instâncias, mas é um valor ínfimo. Durante a implementação deste projeto, pelo meu dashboard de billing, foram computadas 14.307 horas, o que me custo $0.66, pelo menos até hoje: 19/10/2020 às 13:12
     ```
+
+- As instâncias EC2 do tipo t3.medium não fazem parte do "plano gratuito de testes"(free tier) da AWS, portanto não se esqueça de dar um `terminate` nas instâncias e remover o Security Group após terminar os testes neste projeto, caso contrário será cobrado pelo tempo utilizado, cerca de 0.0464 por hora na região da Virgínia.
+
+- Queira ou não, você será cobrado pelo tempo utilizado das instâncias, mas é um valor ínfimo. Durante a implementação deste projeto, pelo meu dashboard de billing, foram computadas 14.307 horas, o que me custo $0.66, pelo menos até hoje: 19/10/2020 às 13:12
+
