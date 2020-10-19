@@ -1,0 +1,9 @@
+---
+
+ec2_instance_type: t2.medium
+sg_name: giropops
+ec2_ami: ami-0dba2cb6798deb6d8
+keypair: ansible_k8s
+region: us-east-1
+profile: default
+count: 3

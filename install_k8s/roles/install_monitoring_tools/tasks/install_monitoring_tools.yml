@@ -1,0 +1,8 @@
+- name: Adicionando repositório stable do Helm
+  shell: "helm repo add stable {{ url_helm_repo }}"
+
+- name: Atualizando cache do Helm
+  shell: "helm repo update"
+
+- name: Instalando o Prometheus Operator
+  shell: "helm install {{ deploy_prometheus }}"

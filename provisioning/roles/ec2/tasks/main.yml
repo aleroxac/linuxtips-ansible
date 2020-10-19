@@ -1,0 +1,3 @@
+---
+# tasks file for ec2
+- include: provisioning.yml

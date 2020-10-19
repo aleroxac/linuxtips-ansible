@@ -1,0 +1,64 @@
+- name: Baixando o pip
+  get_url: 
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+    mode: 0775
+  ignore_errors: true
+  register: download_pip
+
+- name: Instalando o pip
+  shell: "python2 /tmp/get-pip.py"
+  when: download_pip is changed
+  register: install_pip
+
+- name: Instalando dependências do módulo k8s
+  pip:
+    state: present
+    name:
+      - openshift
+      - PyYAML
+
+- name: Copiando arquivo de deployment da app_v1
+  template:
+    src: app_v1.yml.j2
+    dest: /opt/giropops/app_v1.yml
+    owner: root
+    group: root
+    mode: 0644
+  register: copiando_deploy_app_v1
+
+- name: Copiando arquivo de deployment da app_v2
+  template:
+    src: app_v2.yml.j2
+    dest: /opt/giropops/app_v2.yml
+    owner: root
+    group: root
+    mode: 0644
+  register: copiando_deploy_app_v2
+
+- name: Deploy da app_v2
+  k8s:
+    namespace: default
+    state: present
+    src: /opt/giropops/app_v2.yml
+  register: deploy_app_v2
+
+- name: Scale down da app_v1
+  k8s:
+    namespace: default
+    state: present
+    src: /opt/giropops/app_v1.yml
+  register: scale_down_app_v1
+
+- name: Dentro de 2 minutos o app_v1 será removido. Pressione CTRL+c para cancelar.
+  pause: 
+    minutes: 2
+
+- name: Removendo app_v1
+  k8s:
+    namespace: default
+    state: absent
+    src: /opt/giropops/app_v1.yml
+  register: scale_down_app_v1
+
+

@@ -1,0 +1,3 @@
+---
+url_helm_repo: https://kubernetes-charts.storage.googleapis.com
+deploy_prometheus: "--set prometheusOperator.createCustomResource=false prometheus stable/prometheus-operator"
